@@ -38,6 +38,12 @@
             -webkit-backdrop-filter: blur(2px);
             z-index: -1;
         }
+        .header-container {
+            background: rgba(14, 24, 41, 0.8); /* Nuevo color de fondo para la cabecera */
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border-bottom: 1px solid rgba(75, 85, 99, 0.5);
+        }
         .font-gochi-hand {
             font-family: 'Gochi Hand', cursive;
         }
@@ -54,18 +60,23 @@
         .card h3 {
             text-shadow: 2px 2px 4px rgba(0,0,0,0.7); /* Sombra de texto para mejorar la legibilidad */
         }
-        /* Floating Buttons Container */
-        .floating-buttons-container {
+        /* Floating Buttons Containers */
+        .floating-buttons-container-right,
+        .floating-buttons-container-left {
             position: fixed;
             bottom: 2rem;
-            right: 2rem;
             display: flex;
             flex-direction: column;
             gap: 1rem;
             z-index: 50;
         }
+        .floating-buttons-container-right {
+            right: 2rem;
+        }
+        .floating-buttons-container-left {
+            left: 2rem;
+        }
         .floating-button {
-            background-color: #4f46e5; /* bg-indigo-600 */
             border-radius: 9999px; /* Pill shape */
             display: flex;
             align-items: center;
@@ -89,6 +100,12 @@
         }
         .floating-button.calculator:hover {
              background-color: #06b6d4; /* hover:bg-cyan-500 */
+        }
+        .floating-button.seguimiento {
+            background-color: #0d9488; /* bg-teal-600 */
+        }
+        .floating-button.seguimiento:hover {
+            background-color: #14b8a6; /* hover:bg-teal-500 */
         }
         .floating-button:hover {
             transform: scale(1.05);
@@ -134,22 +151,23 @@
 <body class="text-white h-screen flex flex-col">
 
     <!-- Fixed Header Container -->
-    <div class="flex-shrink-0 container mx-auto px-4 pt-8 md:pt-12">
-        <header class="text-center">
-            <h1 class="font-gochi-hand text-5xl md:text-6xl font-bold tracking-wide uppercase">
-                <span class="text-sky-200">O</span><span class="text-sky-300">p</span><span class="text-sky-400">o</span><span class="text-sky-500">s</span><span class="text-cyan-200">i</span><span class="text-cyan-300">c</span><span class="text-cyan-400">i</span><span class="text-cyan-500">o</span><span class="text-blue-200">n</span><span class="text-blue-300">e</span><span class="text-blue-400">s</span>
-                <span class="text-indigo-200">C</span><span class="text-indigo-300">a</span><span class="text-indigo-400">m</span><span class="text-indigo-500">i</span><span class="text-purple-300">n</span><span class="text-purple-400">o</span><span class="text-purple-500">s</span>
-                <span class="text-white">2025</span>
-            </h1>
-            <p class="font-gochi-hand mt-4 text-lg md:text-xl font-bold text-gray-300 tracking-widest">"ESTA ES LA BUENA"</p>
-        </header>
-
-        <h2 class="text-lg md:text-xl font-bold text-center py-6">Selecciona un Bloque Temático</h2>
+    <div class="header-container flex-shrink-0">
+        <div class="container mx-auto px-4 py-4">
+            <header class="text-center">
+                <h1 class="font-gochi-hand text-5xl md:text-6xl font-bold tracking-wide uppercase">
+                    <span class="text-sky-200">O</span><span class="text-sky-300">p</span><span class="text-sky-400">o</span><span class="text-sky-500">s</span><span class="text-cyan-200">i</span><span class="text-cyan-300">c</span><span class="text-cyan-400">i</span><span class="text-cyan-500">o</span><span class="text-blue-200">n</span><span class="text-blue-300">e</span><span class="text-blue-400">s</span>
+                    <span class="text-indigo-200">C</span><span class="text-indigo-300">a</span><span class="text-indigo-400">m</span><span class="text-indigo-500">i</span><span class="text-purple-300">n</span><span class="text-purple-400">o</span><span class="text-purple-500">s</span>
+                    <span class="text-white">2025</span>
+                </h1>
+                <p class="font-gochi-hand mt-1 text-lg md:text-xl font-bold text-gray-300 tracking-widest">"ESTA ES LA BUENA"</p>
+            </header>
+        </div>
     </div>
 
     <!-- Scrollable Main Content -->
     <main id="scrollable-content" class="flex-grow overflow-y-auto container mx-auto px-4">
-        <div class="flex flex-col items-center gap-6 pt-2 pb-8">
+        <h2 class="text-lg md:text-xl font-bold text-center py-6">Selecciona un Bloque Temático</h2>
+        <div class="flex flex-col items-center gap-6 pb-8">
             <!-- Row 1 -->
             <div class="flex justify-center reveal">
                 <a href="https://cheradra312.github.io/ADMINISTRATIVO_1-17/" target="_blank" class="card group relative rounded-xl flex flex-col items-center justify-center text-center overflow-hidden">
@@ -230,11 +248,17 @@
     </main>
 
     <!-- Floating Buttons Container -->
-    <div class="floating-buttons-container">
+    <div class="floating-buttons-container-left">
         <a href="https://cheradra312.github.io/CAL_PROB/" target="_blank" class="floating-button calculator" title="Calculadora de Probabilidades">
-            <i class="fas fa-calculator w-6 h-6"></i>
             <span>PROBABILIDADES</span>
+            <i class="fas fa-calculator w-6 h-6"></i>
         </a>
+        <a href="https://cheradra312.github.io/SEGUIMIENTO/" target="_blank" class="floating-button seguimiento" title="Seguimiento">
+            <span>SEGUIMIENTO</span>
+            <i class="fas fa-chart-line w-6 h-6"></i>
+        </a>
+    </div>
+    <div class="floating-buttons-container-right">
         <a href="https://cheradra312.github.io/REPRODUCTOR/" target="_blank" class="floating-button audio" title="Lector de Audio">
             <i class="fas fa-play w-6 h-6"></i>
             <span>LECTOR DE AUDIO</span>
@@ -296,4 +320,3 @@
 
 </body>
 </html>
-
