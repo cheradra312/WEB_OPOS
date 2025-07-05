@@ -12,6 +12,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌉</text></svg>">
     <!-- Custom Styles -->
     <style>
         body {
@@ -20,6 +22,8 @@
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
+            /* Prevent body scroll */
+            overflow: hidden;
         }
         /* Overlay for the body background image */
         body::before {
@@ -40,49 +44,77 @@
             -webkit-text-fill-color: transparent;
         }
         .card {
-            width: 280px;
+            width: 364px; /* Ancho aumentado */
             height: 180px;
             border: 1px solid #374151; /* border-gray-700 */
             transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
         }
         .card:hover {
             transform: translateY(-8px);
-            box-shadow: 0 10px 25px -3px rgba(56, 189, 248, 0.3), 0 4px 10px -2px rgba(56, 189, 248, 0.2);
+            box-shadow: 0 0 25px rgba(56, 189, 248, 0.4);
         }
-        .audio-button {
-            transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out;
+        /* Floating Audio Button */
+        .floating-audio-button {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background-color: #4f46e5; /* bg-indigo-600 */
+            border-radius: 9999px; /* Pill shape */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem; /* Space between icon and text */
+            padding: 0.75rem 1.5rem; /* py-3 px-6 */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            z-index: 50;
+            transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out;
+            color: white;
+            font-weight: bold;
         }
-        .audio-button:hover {
-            transform: translateY(-2px);
+        .floating-audio-button:hover {
+            transform: scale(1.05);
+            background-color: #6366f1; /* hover:bg-indigo-500 */
+        }
+        /* Styles for scroll animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        #scrollable-content::-webkit-scrollbar {
+            display: none;
+        }
+        /* Hide scrollbar for IE, Edge and Firefox */
+        #scrollable-content {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
         }
     </style>
 </head>
-<body class="text-white">
+<body class="text-white h-screen flex flex-col">
 
-    <div class="container mx-auto px-4 py-8 md:py-12">
-        
-        <!-- Header Section -->
-        <header class="text-center mb-8">
-            <h1 class="text-4xl md:text-6xl font-black tracking-tight uppercase">
+    <!-- Fixed Header Container -->
+    <div class="flex-shrink-0 container mx-auto px-4 pt-8 md:pt-12">
+        <header class="text-center">
+            <h1 class="text-4xl md:text-5xl font-black tracking-tight uppercase">
                 <span class="gradient-text">Oposiciones Caminos</span> 2025
             </h1>
-            <p class="mt-4 text-xl md:text-2xl font-bold text-gray-300">"ESTA ES LA BUENA"</p>
+            <p class="mt-2 text-lg md:text-xl font-bold text-gray-300">"ESTA ES LA BUENA"</p>
         </header>
 
-        <!-- Audio Player Link -->
-        <div class="text-center mb-12">
-            <a href="https://cheradra312.github.io/REPRODUCTOR/" target="_blank" class="audio-button inline-flex items-center gap-3 bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-3 px-6 rounded-lg shadow-lg">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg>
-                <span>LECTOR DE AUDIO</span>
-            </a>
-        </div>
+        <h2 class="text-2xl md:text-3xl font-bold text-center py-6">Selecciona un Bloque Temático</h2>
+    </div>
 
-        <!-- Thematic Blocks Section -->
-        <main class="flex flex-col items-center gap-6">
-            <h2 class="text-2xl md:text-3xl font-bold text-center mb-4">Selecciona un Bloque Temático</h2>
-            
+    <!-- Scrollable Main Content -->
+    <main id="scrollable-content" class="flex-grow overflow-y-auto container mx-auto px-4">
+        <div class="flex flex-col items-center gap-6 pt-2 pb-8">
             <!-- Row 1 -->
-            <div class="flex justify-center">
+            <div class="flex justify-center reveal">
                 <a href="https://cheradra312.github.io/ADMINISTRATIVO_1-17/" target="_blank" class="card group relative rounded-xl flex flex-col items-center justify-center text-center overflow-hidden">
                     <img src="ADMINISTRATIVO.jpg" class="absolute h-full w-full object-cover top-0 left-0 transition-transform duration-300 group-hover:scale-110" alt="Imagen de fondo para Administrativo">
                     <div class="absolute h-full w-full top-0 left-0 bg-black/60 group-hover:bg-black/50 transition-colors duration-300"></div>
@@ -94,7 +126,7 @@
             </div>
 
             <!-- Row 2 -->
-            <div class="flex flex-wrap justify-center gap-6">
+            <div class="flex flex-wrap justify-center gap-6 reveal">
                 <a href="https://cheradra312.github.io/AGUAS_1-28/" target="_blank" class="card group relative rounded-xl flex flex-col items-center justify-center text-center overflow-hidden">
                     <img src="AGUAS (1).jpg" class="absolute h-full w-full object-cover top-0 left-0 transition-transform duration-300 group-hover:scale-110" alt="Imagen de fondo para Aguas">
                     <div class="absolute h-full w-full top-0 left-0 bg-black/60 group-hover:bg-black/50 transition-colors duration-300"></div>
@@ -114,7 +146,7 @@
             </div>
 
             <!-- Row 3 -->
-            <div class="flex flex-wrap justify-center gap-6">
+            <div class="flex flex-wrap justify-center gap-6 reveal">
                 <a href="https://cheradra312.github.io/CARRETERAS-1-24/" target="_blank" class="card group relative rounded-xl flex flex-col items-center justify-center text-center overflow-hidden">
                     <img src="CARRETERAS.jpg" class="absolute h-full w-full object-cover top-0 left-0 transition-transform duration-300 group-hover:scale-110" alt="Imagen de fondo para Carreteras">
                     <div class="absolute h-full w-full top-0 left-0 bg-black/60 group-hover:bg-black/50 transition-colors duration-300"></div>
@@ -134,7 +166,7 @@
             </div>
 
             <!-- Row 4 -->
-            <div class="flex flex-wrap justify-center gap-6">
+            <div class="flex flex-wrap justify-center gap-6 reveal">
                  <a href="https://cheradra312.github.io/TRANSPORTES_1-21/" target="_blank" class="card group relative rounded-xl flex flex-col items-center justify-center text-center overflow-hidden">
                     <img src="TRANSPORTES.jpg" class="absolute h-full w-full object-cover top-0 left-0 transition-transform duration-300 group-hover:scale-110" alt="Imagen de fondo para Transportes">
                     <div class="absolute h-full w-full top-0 left-0 bg-black/60 group-hover:bg-black/50 transition-colors duration-300"></div>
@@ -152,14 +184,39 @@
                     </div>
                 </a>
             </div>
-        </main>
 
-        <!-- Footer -->
-        <footer class="text-center mt-16 text-gray-400">
-            <p>&copy; 2025 - Preparado con &hearts; para la Oposición de Caminos.</p>
-        </footer>
+            <!-- Footer -->
+            <footer class="text-center mt-10 text-gray-400">
+                <p>&copy; 2025 - Preparado con &hearts; para la Oposición de Caminos.</p>
+            </footer>
+        </div>
+    </main>
 
-    </div>
+    <!-- Floating Audio Button -->
+    <a href="https://cheradra312.github.io/REPRODUCTOR/" target="_blank" class="floating-audio-button" title="Lector de Audio">
+        <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg>
+        <span>LECTOR DE AUDIO</span>
+    </a>
+
+    <script>
+        // Scroll Animation
+        const scrollableContent = document.getElementById('scrollable-content');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, index * 100);
+                }
+            });
+        }, {
+            root: scrollableContent, // Observe within the scrollable main area
+            threshold: 0.1
+        });
+
+        const elementsToReveal = document.querySelectorAll('.reveal');
+        elementsToReveal.forEach(el => observer.observe(el));
+    </script>
 
 </body>
 </html>
