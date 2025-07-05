@@ -9,7 +9,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Gochi+Hand&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <!-- Favicon -->
@@ -38,11 +38,8 @@
             -webkit-backdrop-filter: blur(2px);
             z-index: -1;
         }
-        .gradient-text {
-            background: linear-gradient(to right, #38bdf8, #818cf8);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        .font-gochi-hand {
+            font-family: 'Gochi Hand', cursive;
         }
         .card {
             width: 364px; /* Ancho aumentado */
@@ -139,10 +136,12 @@
     <!-- Fixed Header Container -->
     <div class="flex-shrink-0 container mx-auto px-4 pt-8 md:pt-12">
         <header class="text-center">
-            <h1 class="text-4xl md:text-5xl font-black tracking-tight uppercase">
-                <span class="gradient-text">Oposiciones Caminos</span> 2025
+            <h1 class="font-gochi-hand text-5xl md:text-6xl font-bold tracking-wide uppercase">
+                <span class="text-sky-200">O</span><span class="text-sky-300">p</span><span class="text-sky-400">o</span><span class="text-sky-500">s</span><span class="text-cyan-200">i</span><span class="text-cyan-300">c</span><span class="text-cyan-400">i</span><span class="text-cyan-500">o</span><span class="text-blue-200">n</span><span class="text-blue-300">e</span><span class="text-blue-400">s</span>
+                <span class="text-indigo-200">C</span><span class="text-indigo-300">a</span><span class="text-indigo-400">m</span><span class="text-indigo-500">i</span><span class="text-purple-300">n</span><span class="text-purple-400">o</span><span class="text-purple-500">s</span>
+                <span class="text-white">2025</span>
             </h1>
-            <p class="mt-2 text-lg md:text-xl font-bold text-gray-300">"ESTA ES LA BUENA"</p>
+            <p class="font-gochi-hand mt-4 text-lg md:text-xl font-bold text-gray-300 tracking-widest">"ESTA ES LA BUENA"</p>
         </header>
 
         <h2 class="text-lg md:text-xl font-bold text-center py-6">Selecciona un Bloque Temático</h2>
@@ -297,3 +296,4 @@
 
 </body>
 </html>
+
